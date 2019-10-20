@@ -13,7 +13,9 @@
       <li class="todoList_item">
         <button class="todoList_check">○</button>
         <p class="todoList_txt">Do loundry</p>
-        <button class="todoList_delete">ゴミ</button>
+        <button class="todoList_delete">
+          <img src="@/assets/delete@2x.png" alt="ゴミ" />
+        </button>
       </li>
 
       <li class="todoList_item">
@@ -114,5 +116,6 @@ export default {
 .todoList_delete {
   width: 15px;
   height: 19.4px;
+  // background: url('delete@2x.png') center no-repeat;
 }
 </style>

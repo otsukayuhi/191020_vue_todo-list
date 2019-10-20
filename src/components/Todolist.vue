@@ -5,24 +5,33 @@
         class="inputArea_inputform"
         placeholder="Enter activity…"
         type="text"
+        v-model="inputText"
       />
-      <button class="inputArea_inputbtn">
-        <img src="@/assets/add@2x.png" alt="">
+      <button class="inputArea_inputbtn" @click="addTodoList">
+        <img src="@/assets/add@2x.png" alt="" />
       </button>
     </div>
 
     <ul class="todoList">
-      <li class="todoList_item" v-for="todoList in todoLists" :key="todoList.id">
-        <button class="todoList_check">
-          <img src="@/assets/success_check.png" v-if="todoList.checked" alt="">
-          <img src="@/assets/success@2x.png" v-else alt="">
+      <li
+        class="todoList_item"
+        v-for="todoList in todoLists"
+        :key="todoList.id"
+        v-bind:class="{ '-checked': todoList.checked }"
+      >
+        <button class="todoList_check" @click="check(todoList.id)">
+          <img
+            src="@/assets/success_check.png"
+            v-if="todoList.checked"
+            alt=""
+          />
+          <img src="@/assets/success@2x.png" v-else alt="" />
         </button>
-        <p class="todoList_txt">{{todoList.text}}</p>
-        <button class="todoList_delete">
+        <p class="todoList_txt">{{ todoList.text }}</p>
+        <button class="todoList_delete" @click="remove(todoList.id)">
           <img src="@/assets/delete@2x.png" alt="ゴミ" />
         </button>
       </li>
-
     </ul>
   </div>
 </template>
@@ -30,22 +39,39 @@
 <script>
 export default {
   name: "TodoList",
-    data: () => {
-      return {
-          todoLists:[
-              {
-                  id:0,
-                  text:"hoge",
-                  checked:true
-              },
-              {
-                  id:1,
-                  text:"huga",
-                  checked:false
-              }
-          ]
-      }
+  data: () => {
+    return {
+      inputText: "",
+      todoLists: []
+    };
+  },
+  methods: {
+    addTodoList() {
+      const inputText = this.inputText;
+      const time = new Date();
+      const todo = {
+        id: time.getTime(),
+        text: inputText,
+        checked: false
+      };
+      this.todoLists.unshift(todo);
+      this.inputText = "";
+    },
+    check(id) {
+      const todolists = this.todoLists;
+      const targetTodo = todolists.find(item => {
+        return item.id === id;
+      });
+      targetTodo.checked = !targetTodo.checked;
+    },
+    remove(id) {
+      const todolists = this.todoLists;
+      const index = todolists.findIndex(item => {
+        return item.id === id;
+      });
+      todolists.splice(index, 1);
     }
+  }
 };
 </script>
 

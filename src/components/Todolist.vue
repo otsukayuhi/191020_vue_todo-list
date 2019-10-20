@@ -26,6 +26,11 @@
         <p class="todoList_txt">Cook dinner</p>
         <button class="todoList_delete">ゴミ</button>
       </li>
+      <li class="todoList_item -checked">
+        <button class="todoList_check">○</button>
+        <p class="todoList_txt">Cook dinner</p>
+        <button class="todoList_delete">ゴミ</button>
+      </li>
     </ul>
   </div>
 </template>
@@ -37,7 +42,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="scss">
 .template-inner {
   padding: 40px 20px;
 }
@@ -82,17 +87,28 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 16px 14px;
+  // &.-checked{
+  //   display: none;
+
+  // }
 }
 
 .todoList_check {
   width: 24px;
   height: 24px;
+
+  .todoList_item.-checked & {
+  }
 }
 
 .todoList_txt {
   flex: 1;
   padding: 0 20px;
   font-size: 15px;
+  .todoList_item.-checked & {
+    color: #9b9b9b;
+    text-decoration: line-through;
+  }
 }
 
 .todoList_delete {

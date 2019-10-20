@@ -23,7 +23,8 @@ export default {
   list-style: none;
 }
 
-input {
+input,
+button {
   border: 0;
 }
 </style>

@@ -26,6 +26,7 @@ export default {
 input,
 button {
   border: 0;
+  background: none;
 }
 img {
   max-width: 100%;

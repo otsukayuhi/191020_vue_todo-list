@@ -6,40 +6,46 @@
         placeholder="Enter activity…"
         type="text"
       />
-      <button class="inputArea_inputbtn">btn</button>
+      <button class="inputArea_inputbtn">
+        <img src="@/assets/add@2x.png" alt="">
+      </button>
     </div>
 
     <ul class="todoList">
-      <li class="todoList_item">
-        <button class="todoList_check">○</button>
-        <p class="todoList_txt">Do loundry</p>
+      <li class="todoList_item" v-for="todoList in todoLists" :key="todoList.id">
+        <button class="todoList_check">
+          <img src="@/assets/success_check.png" v-if="todoList.checked" alt="">
+          <img src="@/assets/success@2x.png" v-else alt="">
+        </button>
+        <p class="todoList_txt">{{todoList.text}}</p>
         <button class="todoList_delete">
           <img src="@/assets/delete@2x.png" alt="ゴミ" />
         </button>
       </li>
 
-      <li class="todoList_item">
-        <button class="todoList_check">○</button>
-        <p class="todoList_txt">Clean kithen</p>
-        <button class="todoList_delete">ゴミ</button>
-      </li>
-      <li class="todoList_item">
-        <button class="todoList_check">○</button>
-        <p class="todoList_txt">Cook dinner</p>
-        <button class="todoList_delete">ゴミ</button>
-      </li>
-      <li class="todoList_item -checked">
-        <button class="todoList_check">○</button>
-        <p class="todoList_txt">Cook dinner</p>
-        <button class="todoList_delete">ゴミ</button>
-      </li>
     </ul>
   </div>
 </template>
 
 <script>
 export default {
-  name: "TodoList"
+  name: "TodoList",
+    data: () => {
+      return {
+          todoLists:[
+              {
+                  id:0,
+                  text:"hoge",
+                  checked:true
+              },
+              {
+                  id:1,
+                  text:"huga",
+                  checked:false
+              }
+          ]
+      }
+    }
 };
 </script>
 
